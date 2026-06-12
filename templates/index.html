@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#020817">
+    <meta name="description" content="Rádio Cascais — emissão online com identificação automática por Shazam.">
+    <title>Rádio Cascais · Super Deus</title>
+    <link rel="icon" href="/static/default-cover.webp" type="image/webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+<div class="stars" aria-hidden="true"></div>
+
+<main class="shell">
+    <header class="hero">
+        <div class="live-chip"><span></span> EMISSÃO ONLINE</div>
+        <p class="eyebrow">Cascais · Portugal</p>
+        <h1><span>RÁDIO</span> CASCAIS</h1>
+        <p class="hero-copy">A tua banda sonora junto ao Atlântico, com identificação automática por Shazam.</p>
+    </header>
+
+    <section class="player-stage glass">
+        <div class="cover-wrap">
+            <div class="cover-rings" aria-hidden="true"></div>
+            <img id="cover" src="/static/default-cover.webp" alt="Capa da música atual">
+            <div id="coverPulse" class="cover-pulse"></div>
+        </div>
+
+        <div class="now-content">
+            <div class="status-line">
+                <span id="statusDot" class="status-dot"></span>
+                <span id="statusText">Pronta para ligar</span>
+            </div>
+            <p class="micro-label">AGORA A TOCAR</p>
+            <h2 id="title">Rádio Cascais</h2>
+            <p id="artist">Em reprodução...</p>
+
+            <div class="controls">
+                <button id="startBtn" class="power-button" type="button">
+                    <span class="power-icon">▶</span>
+                    <span class="button-label">LIGAR RÁDIO</span>
+                </button>
+                <button id="identifyBtn" class="ghost-button" type="button" disabled>
+                    <span>✦</span> IDENTIFICAR AGORA
+                </button>
+            </div>
+
+            <div class="volume-row">
+                <span>🔈</span>
+                <input id="volume" type="range" min="0" max="1" step="0.01" value="0.9" aria-label="Volume">
+                <span>🔊</span>
+            </div>
+        </div>
+
+        <audio id="audio" preload="none" playsinline data-stream="{{ stream_url }}"></audio>
+    </section>
+
+    <section class="visualizer-shell glass" aria-label="Visualizador de áudio">
+        <canvas id="visualizer"></canvas>
+        <div class="visualizer-caption">
+            <span>LIVE SPECTRUM</span>
+            <span id="identifyCountdown">Shazam em espera</span>
+        </div>
+    </section>
+
+    <section class="dashboard">
+        <article class="panel glass history-panel">
+            <div class="panel-heading">
+                <div><span class="panel-kicker">MEMÓRIA</span><h3>Histórico</h3></div>
+                <button id="clearHistory" class="icon-button" type="button" title="Limpar histórico">⌫</button>
+            </div>
+            <div id="history" class="track-list"></div>
+        </article>
+
+        <article class="panel glass">
+            <div class="panel-heading">
+                <div><span class="panel-kicker">RANKING LOCAL</span><h3>Top 10 Tocadas</h3></div>
+            </div>
+            <ol id="topPlayed" class="ranking"></ol>
+        </article>
+
+        <article class="panel glass">
+            <div class="panel-heading">
+                <div><span class="panel-kicker">LAST.FM</span><h3>Top do Artista</h3></div>
+            </div>
+            <ol id="topTracks" class="ranking"></ol>
+        </article>
+
+        <article class="panel glass bio-panel">
+            <div class="panel-heading">
+                <div><span class="panel-kicker">ARTISTA</span><h3>Biografia</h3></div>
+            </div>
+            <p id="bio" class="scroll-text">Liga a rádio para começar.</p>
+        </article>
+
+        <article class="panel glass lyrics-panel">
+            <div class="panel-heading">
+                <div><span class="panel-kicker">LYRICS</span><h3>Letra</h3></div>
+            </div>
+            <pre id="lyrics" class="scroll-text">Sem letra disponível.</pre>
+        </article>
+
+        <article class="panel glass video-panel">
+            <div class="panel-heading">
+                <div><span class="panel-kicker">YOUTUBE</span><h3>Vídeo</h3></div>
+            </div>
+            <div class="video-frame">
+                <iframe id="ytPlayer" title="Vídeo da música atual" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                <div id="videoPlaceholder" class="video-placeholder">
+                    <span>▶</span><p>O vídeo aparecerá depois da identificação.</p>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <footer>
+        <span>RÁDIO CASCAIS</span>
+        <span>Identificação musical por Shazam · Capa via iTunes</span>
+    </footer>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="/static/script.js" defer></script>
+</body>
+</html>
