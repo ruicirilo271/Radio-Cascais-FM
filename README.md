@@ -21,6 +21,7 @@ static/script.js
 static/default-cover.webp
 requirements.txt
 vercel.json
+.python-version
 .env.example
 ```
 
@@ -31,7 +32,10 @@ vercel.json
 3. Em **Settings → Environment Variables**, adiciona:
    - `LASTFM_API_KEY`
    - `YOUTUBE_API_KEY`
-4. Faz **Redeploy**.
+4. Em **Settings → Build and Deployment**, deixa o **Root Directory** vazio quando estes ficheiros estiverem na raiz do repositório.
+5. Faz **Redeploy**.
+
+O `vercel.json` não contém a secção `functions`. Em projetos Flask modernos, o Vercel deteta automaticamente o `app.py` na raiz. A configuração antiga `"functions": {"app.py": ...}` causa o erro de padrão por não apontar para uma função dentro de `api/`. Para alterar o tempo máximo, usa **Settings → Functions → Max Duration** no painel do projeto.
 
 O `RADIO_STREAM_URL` já tem um valor padrão, mas também pode ser definido nas variáveis de ambiente.
 
